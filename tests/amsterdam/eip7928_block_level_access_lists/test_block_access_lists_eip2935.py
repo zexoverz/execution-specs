@@ -454,6 +454,11 @@ def test_bal_2935_invalid_calldata_size(
 
 
 @pytest.mark.pre_alloc_mutable()
+@pytest.mark.pre_alloc_group(
+    "separate",
+    reason="Empties the history contract in its genesis, which packing "
+    "with any group whose genesis carries the deployed contract undoes.",
+)
 def test_bal_2935_absent_contract(
     pre: Alloc,
     blockchain_test: BlockchainTestFiller,
